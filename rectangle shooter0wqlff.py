@@ -79,8 +79,8 @@ screen.update()
 # what happens when the cursor is clicked
 def click(x,y): 
     global Screen, t, bullet, bullet1, window_x, window_y, bullets, n
-    if (x<=200 and x>=-200 and y<=50 and y>=-100): # if the play button is clicked
-        if (Screen == "home"): # and is on homescreen, then starts game function
+    if (Screen=="home"): # if the play button is clicked
+        if (x<=200 and x>=-200 and y<=50 and y>=-100): # if the play button is clicked # and is on homescreen, then starts game function
             Screen="game"
             t.showturtle() 
             game()
@@ -94,12 +94,11 @@ def click(x,y):
 
 def update_bullet():
     for bullet in bullets[:]:
-        bullet.fd(1)        
+        bullet.fd(15)        
         if (bullet.xcor()>700 or bullet.xcor()<-700 or bullet.ycor()>400 or bullet.ycor()<-400):
             bullet.hideturtle()
             bullets.remove(bullet)
 
-    screen.ontimer(update_bullet, 1000)
 
 def press_w():
     global key_held_w
@@ -142,8 +141,8 @@ def track_cursor():
     window_x = canvas.winfo_screenwidth()
     window_y = canvas.winfo_screenheight()
 
-    x=x-767.5
-    y=-(y-413.5)+20
+    x=x-798.5
+    y=-(y-445)
 
 
 def game():
