@@ -24,6 +24,14 @@ t.up()
 t.shape("circle")
 t.color("#18ff00")
 
+#making the enemy turtle
+rec=turtle.Turtle()
+rec.ht()
+rec.up()
+rec.shape("square")
+rec.turtlesize(2,4)
+rec.color("#ff1111")
+
 # making the bullet turtle
 bullet=turtle.Turtle()
 bullet.ht()
@@ -82,22 +90,25 @@ def click(x,y):
     if (Screen=="home"): # if the play button is clicked
         if (x<=200 and x>=-200 and y<=50 and y>=-100): # if the play button is clicked # and is on homescreen, then starts game function
             Screen="game"
-            t.showturtle() 
+            t.st() 
+            rec.st()
             game()
                    
     elif (Screen=="game"): # for shooting
         newbullet = bullet.clone()
         newbullet.st()
         newbullet.goto(bullet.xcor(),bullet.ycor())
-
         bullets.append(newbullet)
 
 def update_bullet():
     for bullet in bullets[:]:
         bullet.fd(15)        
-        if (bullet.xcor()>700 or bullet.xcor()<-700 or bullet.ycor()>400 or bullet.ycor()<-400):
+        if (bullet.xcor()>window_x or bullet.xcor()<-window_x or bullet.ycor()>window_y or bullet.ycor()<-window_y):
             bullet.hideturtle()
             bullets.remove(bullet)
+
+def check_collision():
+    
 
 
 def press_w():
