@@ -31,7 +31,7 @@ rec.up()
 rec.shape("square")
 rec.turtlesize(2,4)
 rec.color("#ff1111")
-
+rec.goto(100,60)
 # making the bullet turtle
 bullet=turtle.Turtle()
 bullet.ht()
@@ -107,7 +107,9 @@ def update_bullet():
             bullet.hideturtle()
             bullets.remove(bullet)
 
-def check_collision():
+#def check_collisions():
+
+
     
 
 
@@ -135,14 +137,17 @@ def movement():
         t.forward(-7)
 
 def dir():
-    global direction, x, y, t
+    global direction, x, y, t, rec, tdir
     direction = math.degrees(math.atan((y-t.ycor())/(x-t.xcor()+1e-9))) 
     if (x<t.xcor() and y>t.ycor()):
         direction = 180+direction
     if (x<t.xcor() and y<t.ycor()):
         direction = -180+direction
     t.seth(direction)
-         
+    tdir=math.degrees(math.tan(((t.ycor()-rec.ycor())/(t.xcor()-rec.xcor()))))
+    #tdir = ((t.ycor()-rec.ycor())/
+    rec.seth(tdir)
+
 
 def track_cursor():
     global x, y, window_x, window_y
@@ -177,6 +182,7 @@ def game():
     movement()
 
     track_cursor()
+   # check_shot()
     dir()
 
     bullet.setheading(t.heading())
