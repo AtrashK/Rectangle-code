@@ -107,7 +107,8 @@ def update_bullet():
             bullet.hideturtle()
             bullets.remove(bullet)
 
-#def check_collisions():
+def check_collisions():
+    global bullet, t, rec
 
 
     
@@ -144,9 +145,8 @@ def dir():
     if (x<t.xcor() and y<t.ycor()):
         direction = -180+direction
     t.seth(direction)
-    tdir=math.degrees(math.tan(((t.ycor()-rec.ycor())/(t.xcor()-rec.xcor()))))
-    #tdir = ((t.ycor()-rec.ycor())/
-    rec.seth(tdir)
+    tdir=math.degrees( math.atan( ( ( t.ycor()-rec.ycor() )/( t.xcor()-rec.xcor() ) ) ) )
+    rec.seth(tdir+180)
 
 
 def track_cursor():
@@ -162,7 +162,7 @@ def track_cursor():
 
 
 def game():
-    global Screen, play, title, x, y, direction, t
+    global Screen, play, title, x, y, direction, t, bullet, rec
     play.clear()
     title.clear()
 
@@ -188,6 +188,8 @@ def game():
     bullet.setheading(t.heading())
     bullet.setx(t.xcor())
     bullet.sety(t.ycor())
+
+    print(rec.seth())
 
     update_bullet()
 
